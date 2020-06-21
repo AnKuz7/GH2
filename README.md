@@ -1,1 +1,1 @@
-# GH2
+# Game Hunter

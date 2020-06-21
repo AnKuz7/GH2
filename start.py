@@ -38,8 +38,14 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
+    login = None
+    pas = None
     if request.method == 'POST':
         k = gameHunter.inputUser(request.form['username'], request.form['password'])
+        d = {'dict': 1, 'dictionary': 2}
+        data = {'login': request.form['username'], 'pas': request.form['password']}
+        login = request.form['username']
+        pas = request.form['password']
         if k:
             session['logged_in'] = True
             #flash('You were logged in')
@@ -49,7 +55,7 @@ def login():
             #print(user_string)
             return redirect(url_for('get_person'))
         else: error = 'Неправильный логин или пароль!'
-    return render_template('login.html', error=error)
+    return render_template('login.html', error=error, login = login, pas = pas)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -92,7 +98,8 @@ def register():
 
             return redirect(url_for('get_person'))
 
-    return render_template('register.html')
+    return render_template('register.html', name=name, surname=surname, phone=phone, email=email, password=password, password2=password2)
+
 
 #профиль пользователя
 @app.route('/get_person', methods=['GET'])
@@ -200,10 +207,11 @@ def add_message():
 
                 return redirect(url_for('my_ad'))
 
-        return render_template('form_for_add_ad.html', error=error)
+        return render_template('form_for_add_ad.html', error=error, date = request.form['date'], 
+        time = request.form['time'], place = request.form['place'], quantityPlayers = request.form['quantity'], 
+        nameGame = request.form['game_name'], duration = request.form['duration'], description = request.form['description'])
     else:
         return redirect(url_for('login'))
-
 
 
 #обработка удаления объявления (нет html)
@@ -264,6 +272,7 @@ def dell_player(ad_id):
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
+
 
 if __name__ == '__main__':
     app.run()
