@@ -1,3 +1,4 @@
+## -*- coding: utf-8 -*-
 import gameHunter
 from flask import Flask, render_template, redirect, url_for, request, jsonify, make_response, session, flash, g
 from flask_restful import Api

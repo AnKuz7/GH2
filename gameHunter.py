@@ -1,3 +1,4 @@
+## -*- coding: utf-8 -*-
 import pymongo
 import uuid
 import hashlib
