@@ -265,5 +265,5 @@ def dell_player(ad_id):
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
-
-app.run()
+if __name__ == '__main__':
+    app.run()
