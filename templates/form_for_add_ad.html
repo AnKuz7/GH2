@@ -1,0 +1,37 @@
+{% extends "portal.html" %}
+
+{% block title %}GH | Create ad{% endblock %}
+
+{% block content %}
+  <div class="ad-form" action="/add_message" method="post">
+    <span class="ad-form-title">
+      Создать объявление
+    </span>
+    <form class="scroll_div" action="/add_message" method="post">
+      {% if error %}<div class=error>Ошибка: {{error}}</div>{% endif %}
+
+      <div class="wrap-input-ad">
+        <input class="input-ad" required max="9999-12-31" type="date" name="date" placeholder="Дата">
+      </div>
+      <div class="wrap-input-ad">
+        <input class="input-ad" required  type="time" name="time" placeholder="Время">
+      </div>
+      <div class="wrap-input-ad">
+        <input class="input-ad" required  type="text" name="place" placeholder="Место">
+      </div>
+      <div class="wrap-input-ad">
+        <input class="input-ad" required type="number" min="1" name="quantity" placeholder="Количество игроков">
+      </div>
+      <div class="wrap-input-ad">
+        <input class="input-ad" required  type="text" name="game_name" placeholder="Название игр">
+      </div>
+      <div class="wrap-input-ad">
+        <input class="input-ad" required  type="text" name="duration" placeholder="Предполагаемая длительность">
+      </div>
+      <div class="wrap-input-ad">
+        <input class="input-ad" type="text" name="description" id="descriptionCr" placeholder="Описание">
+      </div>
+      <input class="menu-btn ad-form-btn" type="submit" value="Разместить">
+    </form>
+  </div>
+{% endblock %}

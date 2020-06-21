@@ -1,0 +1,38 @@
+{% extends "portal.html" %}
+
+{% block title %}GH | My ads{% endblock %}
+
+{% block content %}
+  <div class="ad-form">
+    <span class="ad-form-title">
+      Мои объявления
+    </span>
+    <div class="scroll_div">
+      {% for message in messages %}
+          <div class="ads_form">
+              Автор: {{message.dataCreator.name}}&nbsp;{{message.dataCreator.surname}}<br>
+              Дата: {{(message.date)[8:10]+"."+(message.date)[5:7]+"."+(message.date)[0:4]}} <br>
+              Время: {{message.time}} <br>
+              Место: {{message.place}} <br>
+              Количество человек: {{message.quantityPlayers}}<br>
+              Названия игр: {{message.nameGame}}<br>
+              Предполагаемая длительность: {{message.duration}}<br>
+              Описание: {{message.description}}<br>
+              Участники: <br>
+              <div class="participants">
+                  {% for player in message.recordedPlayers %}
+                    &bull; {{player.name}}&nbsp;{{player.surname}}&nbsp;&nbsp;|
+                    &nbsp;{{player.email}}&nbsp;&nbsp;
+                    {% if player.phone != "null" %}
+                      {{player.phone}}
+                    {% endif %}<br>
+                  {% endfor %}
+              </div>
+              <div class="text-btn-ads">
+                  <a class="txt2 txt3" href="{{url_for('del_message', ad_id = message._id)}}">&#10006; Удалить </a> 
+              </div>
+          </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

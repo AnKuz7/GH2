@@ -1,0 +1,22 @@
+{% extends "portal.html" %}
+
+{% block title %}GH | My profile{% endblock %}
+
+{% block content %}
+  <div class="ad-form">
+    <span class="ad-form-title">
+      Мой профиль
+    </span>
+      <div class="data_pr">
+        <div class="f_l_name">
+          {{user.name}} <br> {{user.surname}} <br> 
+        </div>
+        <div class="tel_email">
+          &#9993; Email: <br> {{user.email}} <br><br> &#9742; Телефон: <br> {{user.phone}}
+        </div>
+      </div>
+      <span class="im_pr">
+        <img  src = "{{ url_for( 'static', filename='image/cards.png')}}" />
+      </span>
+  </div>
+{% endblock %}
